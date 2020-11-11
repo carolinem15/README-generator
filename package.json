@@ -11,5 +11,8 @@
     "url": "README-generator"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  }
 }
