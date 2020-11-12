@@ -1,15 +1,14 @@
-  // fs using writeFile method -- use this to create your .md file for the README
+  // fs using writeFile method to create .md file
   const fs = require('fs')
-  let item = process.argv[2]
 
-  fs.writeFile('README.md', item, function (error) {
+  // async method because we want this to happen first
+  fs.writeFile('README.md', process.argv[2], function (error) {
       if (error) {
           console.log(error)
       }
-    //   console.log('Way to go!')
   })
-
-  // inquirer skeleton code for asking questions in the command line (per documentation)
+ 
+ // inquirer skeleton code for prompt
   var inquirer = require('inquirer');
   inquirer
       .prompt([
@@ -61,25 +60,62 @@
           },
       ])
       .then(answers => {
-          // Use user feedback for... whatever!!
-          // .then(function(renderMd))
-          
-    // fs using appendFile method to add to existing .md file
+          // Use user feedback for... whatever!!         
 
-    fs.appendFile('README.md', process.argv[2] + '\n', function(error) {
-        if (error) {
-            console.log(error)
-        } else {
-            console.log('Commit logged!')
-        }
-    })
+        // fs using appendFile method to add to existing .md file
+
+          fs.appendFile('README.md', answers.title + '\n', function (error) {
+              if (error) {
+                  console.log(error)
+              } 
+          })
+          fs.appendFile('README.md', answers.description + '\n', function (error) {
+            if (error) {
+                console.log(error)
+            } 
+        })
+        fs.appendFile('README.md', answers.installation + '\n', function (error) {
+            if (error) {
+                console.log(error)
+            } 
+        })
+        fs.appendFile('README.md', answers.usage + '\n', function (error) {
+            if (error) {
+                console.log(error)
+            } 
+        })
+        fs.appendFile('README.md', answers.license + '\n', function (error) {
+            if (error) {
+                console.log(error)
+            } 
+        })
+        fs.appendFile('README.md', answers.contributing + '\n', function (error) {
+            if (error) {
+                console.log(error)
+            } 
+        })
+        fs.appendFile('README.md', answers.tests + '\n', function (error) {
+            if (error) {
+                console.log(error)
+            } 
+        })
+        fs.appendFile('README.md', answers.username + '\n', function (error) {
+            if (error) {
+                console.log(error)
+            } 
+        })
+        fs.appendFile('README.md', answers.email + '\n', function (error) {
+            if (error) {
+                console.log(error)
+            } 
+        })
       })
       .catch(error => {
           if (error.isTtyError) {
               // Prompt couldn't be rendered in the current environment
               console.log(error)
           } else {
-              // Something else when wrong
+              // Something else went wrong
               console.log('Oh no! Something else is wrong')
           }
       })
