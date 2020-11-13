@@ -2,11 +2,11 @@
   const fs = require('fs')
 
   // async method because we want this to happen first
-  fs.writeFile('README.md', process.argv[2], function (error) {
-      if (error) {
-          console.log(error)
-      }
-  })
+//   fs.writeFile('README.md', process.argv[2], function (error) {
+//       if (error) {
+//           console.log(error)
+//       }
+//   })
  
  // inquirer skeleton code for prompt
   var inquirer = require('inquirer');
@@ -34,9 +34,10 @@
               name: "usage"
           },
           {
-              type: "input",
+              type: "list",
               message: "What is your project's license?",
-              name: "license"
+              name: "license",
+              choices: ['MIT', 'GNU GPLv3', 'ISC']
           },
           {
               type: "input",
@@ -60,55 +61,34 @@
           },
       ])
       .then(answers => {
-          // Use user feedback for... whatever!!         
+          // Use user feedback for... whatever!!      
+          
+        //   let describe = `## Description`
+        //   let install = `## Installation`
+        //   let use = `## Usage`
+        //   let licensing = `## Licensing`
+        //   let contribute = `## Contributions`
+        //   let test = `## Tests`
+        //   let questions = `## Questions`
+        let license;
+        
+        if (answers.license === 'MIT') {
+            license = '[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)'
+        }
+        if (answers.license === 'GNU GPLv3') {
+            license = '[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)'
+        }
+        if (answers.license === 'ISC') {
+            license = '[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)'
+        }
 
         // fs using appendFile method to add to existing .md file
 
-          fs.appendFile('README.md', answers.title + '\n', function (error) {
-              if (error) {
-                  console.log(error)
-              } 
+        fs.writeFile('README.md', generateMarkdown(answers, license) + '\n', function (error) {
+            if (error) {
+                console.log(error)
+            } 
           })
-          fs.appendFile('README.md', answers.description + '\n', function (error) {
-            if (error) {
-                console.log(error)
-            } 
-        })
-        fs.appendFile('README.md', answers.installation + '\n', function (error) {
-            if (error) {
-                console.log(error)
-            } 
-        })
-        fs.appendFile('README.md', answers.usage + '\n', function (error) {
-            if (error) {
-                console.log(error)
-            } 
-        })
-        fs.appendFile('README.md', answers.license + '\n', function (error) {
-            if (error) {
-                console.log(error)
-            } 
-        })
-        fs.appendFile('README.md', answers.contributing + '\n', function (error) {
-            if (error) {
-                console.log(error)
-            } 
-        })
-        fs.appendFile('README.md', answers.tests + '\n', function (error) {
-            if (error) {
-                console.log(error)
-            } 
-        })
-        fs.appendFile('README.md', answers.username + '\n', function (error) {
-            if (error) {
-                console.log(error)
-            } 
-        })
-        fs.appendFile('README.md', answers.email + '\n', function (error) {
-            if (error) {
-                console.log(error)
-            } 
-        })
       })
       .catch(error => {
           if (error.isTtyError) {
@@ -119,3 +99,17 @@
               console.log('Oh no! Something else is wrong')
           }
       })
+const generateMarkdown = (obj, badge) => {
+return `
+## Title 
+${obj.title}
+## Description 
+${obj.description}
+----
+${badge}
+`
+}
+// [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+// [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
+// [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+
