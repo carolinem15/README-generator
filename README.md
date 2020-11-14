@@ -1,8 +1,8 @@
 
-# README generator
+# README Generator
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 ## Description 
-This is a README generator using Node.js
+This is a README generator using Node.js, Inquirer.js, and Fs (File System). This README is designed to help ease the process of writing READMEs for projects. It even gets generated right into the directory you are currently in! While constructing this project, I was able to get to practice coding in ES6 by using things like template literals and arrow functions. I was also able to familiarize myself with Inquirer.js, Fs, and Markdown.
 ## Table of Contents
 1. [Installation] (#installation)
 2. [Usage] (#usage)
@@ -10,11 +10,11 @@ This is a README generator using Node.js
 4. [Tests] (#tests)
 5. [Questions] (#questions)
 ## Installation 
-Run "node index"
+To install this project, run node index.
 ## Usage 
-Answer questions delivered in Terminal. Watch as a README.md file gets generated in the same directory you are currently in.
+To use this project, simply answer the questions that are prompted in your command line after running node index. Watch as a Markdown file gets generated in the same directory you are currently in.
 ## Contributing 
-No
+Please see the Contributor Covenant (https://www.contributor-covenant.org/)
 ## Tests
 No
 ## Questions
